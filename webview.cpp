@@ -1,5 +1,4 @@
 #include "webview.h"
-
 WebView::WebView(QWidget *parent)
     : QWidget(parent),
       m_layout(new QVBoxLayout),
@@ -16,12 +15,22 @@ WebView::WebView(QWidget *parent)
             this, SLOT(changeUrl()));
     connect(m_webEngineView, SIGNAL(titleChanged(QString)),
             this, SLOT(changeTitle()));
+    connect(m_webEngineView, &QWebEngineView::urlChanged,
+            [=](const QUrl& newUrl)
+    {
+        m_lineEdit->setText(newUrl.toString());
+    });
 
 
 }
 void WebView::changeUrl()
 {
-    m_webEngineView->load(QUrl(m_lineEdit->text()));
+    QString url = m_lineEdit->text();
+
+    if (!(url.startsWith("http://") || url.startsWith("https://"))) {
+        url = "http://" + url;
+    }
+    m_webEngineView->load(QUrl(url));
 }
 void WebView::changeTitle()
 {
