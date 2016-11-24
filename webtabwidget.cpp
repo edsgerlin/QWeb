@@ -12,6 +12,9 @@ WebTabWidget::WebTabWidget(QWidget *parent)
     new QShortcut(QKeySequence("Ctrl+H"), this, SLOT(previousTab()));
     new QShortcut(QKeySequence("Ctrl+L"), this, SLOT(nextTab()));
     new QShortcut(QKeySequence::AddTab, this, SLOT(newTab()));
+    new QShortcut(QKeySequence("Ctrl+0"), this, SLOT(resetZoomFactorForCurrentTab()));
+    new QShortcut(QKeySequence("Ctrl+="), this, SLOT(increaseZoomFactorForCurrentTab()));
+    new QShortcut(QKeySequence::ZoomOut, this, SLOT(decreaseZoomFactorForCurrentTab()));
     newTab();
 }
 WebTabWidget::~WebTabWidget() {
@@ -56,9 +59,22 @@ void WebTabWidget::reloadCurrentTab() {
 }
 
 void WebTabWidget::previousTab() {
-    this->setCurrentIndex(currentIndex() > 0 ? currentIndex() - 1: 0);
+
+    this->setCurrentIndex(qMax(0, currentIndex() - 1));
 }
 
 void WebTabWidget::nextTab() {
-    this->setCurrentIndex((currentIndex() + 1) < count() ? currentIndex() + 1: count() - 1);
+    this->setCurrentIndex(qMin(currentIndex() + 1, count() - 1));
+}
+
+void WebTabWidget::increaseZoomFactorForCurrentTab() {
+    qobject_cast<WebView*>(currentWidget())->increaseZoomFactor();
+}
+
+void WebTabWidget::decreaseZoomFactorForCurrentTab() {
+    qobject_cast<WebView*>(currentWidget())->decreaseZoomFactor();
+}
+
+void WebTabWidget::resetZoomFactorForCurrentTab() {
+    qobject_cast<WebView*>(currentWidget())->resetZoomFactor();
 }

@@ -21,6 +21,9 @@ public slots:
     void back();
     void forward();
     void reload();
+    void increaseZoomFactor();
+    void decreaseZoomFactor();
+    void resetZoomFactor();
 private:
     QLineEdit *m_lineEdit;
     QWebEngineView *m_webEngineView;

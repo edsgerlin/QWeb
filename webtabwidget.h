@@ -21,7 +21,9 @@ public slots:
     void reloadCurrentTab();
     void previousTab();
     void nextTab();
-
+    void increaseZoomFactorForCurrentTab();
+    void decreaseZoomFactorForCurrentTab();
+    void resetZoomFactorForCurrentTab();
 };
 
 #endif // WEBTABWIDGET_H

@@ -1,4 +1,5 @@
 #include "webview.h"
+#include <QApplication>
 WebView::WebView(QWidget *parent)
     : QWidget(parent),
       m_layout(new QVBoxLayout),
@@ -20,8 +21,7 @@ WebView::WebView(QWidget *parent)
     {
         m_lineEdit->setText(newUrl.toString());
     });
-
-
+    resetZoomFactor();
 }
 void WebView::changeUrl()
 {
@@ -51,4 +51,15 @@ void WebView::forward() {
 
 void WebView::reload() {
     this->m_webEngineView->reload();
+}
+void WebView::increaseZoomFactor() {
+    this->m_webEngineView->setZoomFactor(qMin(3.00, this->m_webEngineView->zoomFactor() + 0.25));
+}
+
+void WebView::decreaseZoomFactor() {
+    this->m_webEngineView->setZoomFactor(qMax(0.5, this->m_webEngineView->zoomFactor() - 0.25));
+}
+
+void WebView::resetZoomFactor() {
+    this->m_webEngineView->setZoomFactor(this->devicePixelRatioF());
 }
