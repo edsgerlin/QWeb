@@ -18,6 +18,9 @@ signals:
 public slots:
     void changeTitle();
     void changeUrl();
+    void back();
+    void forward();
+    void reload();
 private:
     QLineEdit *m_lineEdit;
     QWebEngineView *m_webEngineView;

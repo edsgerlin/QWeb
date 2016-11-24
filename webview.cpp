@@ -40,3 +40,15 @@ void WebView::changeTitle()
 QString WebView::title() const {
     return *this->m_title;
 }
+
+void WebView::back() {
+    this->m_webEngineView->back();
+}
+
+void WebView::forward() {
+    this->m_webEngineView->forward();
+}
+
+void WebView::reload() {
+    this->m_webEngineView->reload();
+}
