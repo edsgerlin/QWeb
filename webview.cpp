@@ -21,6 +21,7 @@ WebView::WebView(QWidget *parent)
     {
         m_lineEdit->setText(newUrl.toString());
     });
+    m_webEngineView->setHtml("<!DOCTYPE html>\n<html>\n\n<head>\n    <title>Help</title>\n</head>\n\n<body>\n    <table>\n        <tr>\n            <th>Key</th>\n            <th>Function</th>\n        </tr>\n        <tr>\n            <th>Control + W</th>\n            <th>Close Tab</th>\n        </tr>\n        <tr>\n            <th>Control + T</th>\n            <th>New Tab</th>\n        </tr>\n        <tr>\n            <th>Control + =</th>\n            <th>Increase Zoom</th>\n        </tr>\n        <tr>\n            <th>Control + -</th>\n            <th>Decrease Zoom</th>\n        </tr>\n        <tr>\n            <th>Control + 0</th>\n            <th>Reset Zoom</th>\n        </tr>\n        <tr>\n            <th>Alt + Left Arrow Key</th>\n            <th>Back</th>\n        </tr>\n        <tr>\n            <th>Alt + Right Arrow Key</th>\n            <th>Forward</th>\n        </tr>\n        <tr>\n            <th>F5</th>\n            <th>Refresh Page</th>\n        </tr>\n        <tr>\n            <th>Control+H</th>\n            <th>Switch to Previous Page</th>\n        </tr>\n        <tr>\n            <th>Control+L</th>\n            <th>Switch to Next Page</th>\n        </tr>\n    </table>\n</body>\n\n</html>");
     resetZoomFactor();
 }
 void WebView::changeUrl()
